@@ -1,0 +1,5 @@
+Generate vmlinux.h from the target Android kernel BTF before building:
+
+  adb shell su -c "bpftool btf dump file /sys/kernel/btf/vmlinux format c" > src/vmlinux.h
+
+The generated file is kernel-specific and is intentionally not committed here.

@@ -1,0 +1,9 @@
+deps/
+/vmlinux.btf
+/hideport_module.zip
+/hideSceneport_module.zip
+src/vmlinux.h
+src/hideport.skel.h
+system/bin/hideport_loader
+system/bin/hideport.bpf.o
+*.log

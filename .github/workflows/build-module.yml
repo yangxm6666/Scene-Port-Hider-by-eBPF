@@ -1,0 +1,34 @@
+name: Build KernelSU module
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install host tools
+        run: |
+          sudo apt update
+          sudo apt install -y adb curl unzip make git clang llvm lld tar xxd zip pkg-config autoconf automake libtool bzip2 xz-utils bpftool
+
+      - name: Cache Android arm64 dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/hideport-deps
+          key: hideport-deps-r25c-${{ runner.os }}-${{ hashFiles('build_deps_android.sh') }}
+
+      - name: Build module from BTF
+        run: |
+          bash tools/build_from_btf.sh
+
+      - name: Upload module zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: hideSceneport_module
+          path: ../hideSceneport_module.zip
+          if-no-files-found: error

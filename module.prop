@@ -1,0 +1,6 @@
+id=hideSceneport
+name= Scene Port Hider by eBPF
+version=v1.0
+versionCode=1
+author=Andrea-Lyz
+description=Hide Scene TCP bind probes for ports 8788 and 8765 with a KernelSU eBPF module
