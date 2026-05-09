@@ -43,7 +43,6 @@ fi
         post-fs-data.sh
         service.sh
         hideport_start.sh
-        hide_scene_port.sh
         customize.sh
         uninstall.sh
         service.d
