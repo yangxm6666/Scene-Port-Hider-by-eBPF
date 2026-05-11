@@ -172,23 +172,13 @@ static int bump_memlock_rlimit(void)
 static int setup_ports(struct hideport_bpf *skel, const struct config *cfg)
 {
     __u8 net_value = 1;
-    __u8 host_value = 2;
 
     for (int i = 0; i < cfg->port_count; i++) {
         __u16 net_key = htons(cfg->ports[i]);
-        __u16 host_key = cfg->ports[i];
 
         if (bpf_map_update_elem(bpf_map__fd(skel->maps.target_ports),
                                 &net_key, &net_value, BPF_ANY)) {
             fprintf(stderr, "failed to add port %u: %s\n",
-                    cfg->ports[i], strerror(errno));
-            return -errno;
-        }
-
-        if (host_key != net_key &&
-            bpf_map_update_elem(bpf_map__fd(skel->maps.target_ports),
-                                &host_key, &host_value, BPF_ANY)) {
-            fprintf(stderr, "failed to add host-order port %u: %s\n",
                     cfg->ports[i], strerror(errno));
             return -errno;
         }

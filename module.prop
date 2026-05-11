@@ -1,6 +1,6 @@
 id=hideSceneport
 name=Scene Port Hider by eBPF
-version=v2.0
-versionCode=2
+version=v2.0.1
+versionCode=3
 author=Andrea-Lyz
 description=Hide Scene loopback connect probes for ports 8788 and 8765 with an eBPF cgroup module
